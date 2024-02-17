@@ -1,13 +1,17 @@
-print("Loading....")
+print("初期化中")
 try:
     import os,sys,subprocess,configparser,sys
 except:
     print("モジュールの読み込みに失敗しました")
+    input()
+    sys.exit()
 try:
     setting = configparser.ConfigParser()
     setting.read("config.ini")
 except:
     print("設定ファイルを読み込めませんでした")
+    input()
+    sys.exit()
 
 def write_env_path_to_temp_ini(path):
     try:
@@ -15,6 +19,8 @@ def write_env_path_to_temp_ini(path):
             temp_ini_file.write("[env]\npath = " + path)
     except Exception as e:
         print("temp.iniファイルにパスを書き込めませんでした")
+        input()
+        sys.exit()
 
 write_env_path_to_temp_ini(sys.argv[1])
 
@@ -41,4 +47,6 @@ if c.isdigit() and int(c) < len(names):
         print("選択されたスクリプトが見つかりません")
 else:
     print("無効な番号が入力されました")
+    input()
+    sys.exit()
 
